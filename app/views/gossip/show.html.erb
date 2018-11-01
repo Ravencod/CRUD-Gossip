@@ -1,0 +1,21 @@
+<h1>Gossip number <%= @gossip.id%></h1>
+<p>Created on <%= @gossip.created_at%></p>
+<%= @gossip.anonymous_gossiper%>
+<br><br><p> wrote </p>
+<p><%= @gossip.content%></p>
+<%= link_to "Edit", "#{@gossip.id}/edit" %>
+<br><br>
+<%= link_to 'Click to delete this shit', @gossip, method: :delete %>
+
+<h3>Comments</h3>
+
+<%= form_for [@story, Comment.new] do |f| %>
+<%= f.text_area :body, placeholder: "Add a comment" %><br/>
+<%= f.submit "Add Comment" %>
+<% end %>
+
+<ul>
+  <%= render(partial: 'comments/comment', collection: @gossip.comments) %>
+</ul>
+
+
